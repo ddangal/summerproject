@@ -17,28 +17,33 @@ class sem1 extends JPanel
 	{	
 		JButton b1 = new JButton("ADD");
 		JButton b2 = new JButton("FIND");
-		JButton b3 = new JButton("REMOVE");
+		JButton b3 = new JButton("REVIEW");
                 JButton b5 = new JButton("LISTING");
                 JButton b4 = new JButton("Transfer");
                 JCheckBox c = new JCheckBox("send");
+                JLabel l1 = new JLabel("End of Semester");
                 JLabel l = new JLabel("(To transfer data to next sem, click transfer)");
+                l1.setFont(new Font("Serif",Font.BOLD,30));
                 l.setFont(new Font("Serif",Font.BOLD,20));
                 setLayout(null);
                 b1.setBounds(100,40,100,40);
-                b2.setBounds(300,40,100,40);
-                b3.setBounds(100,110,100,40);
-                b5.setBounds(300,110,100,40);
-                c.setBounds(180,180,60,30);
-                b4.setBounds(250,180,100,30);
+                b2.setBounds(250,40,100,40);
+                b5.setBounds(400,40,100,40);
+                l1.setBounds(100,120,300,40);
+                b3.setBounds(100,180,100,40);
+                c.setBounds(220,180,60,30);
+                b4.setBounds(270,180,100,30);
                 l.setBounds(60,220,460,40);
                 //b4.setBounds()
 		add(b1);
 		add(b2);
-		add(b3);
+		add(b5);
                 add(b5);
-                add(l);
+                add(l1);
+                add(b3);
                 add(c);
                 add(b4);
+                add(l);
 		b1.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent ae)
@@ -111,182 +116,6 @@ class sem1 extends JPanel
 
 
 
-class find_s1 extends JFrame implements ActionListener
-  { 
-    JLabel r_name,r_address,r_batch,r_roll, r_contact, r_photo;
-
-    JLabel l1, l2, l3,l4,l5,l6,l7;
-
-    JTextField tf1, tf2, tf3,tf4,tf5,tf6;
-
-    JButton btn1, btn2;
-
-
-
-    find_s1()
-     {
-
-        setVisible(true);
-
-        setSize(650, 500);
-
-        setLayout(null);
-
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
-        setTitle("Data Entry Form ");
-
- 
-                      
-        l1 = new JLabel("Find Data:");
-
-        l1.setForeground(Color.blue);
-
-        l1.setFont(new Font("Serif", Font.BOLD, 20));
-        l1.setFont(new Font("Serif",Font.ITALIC, 20));
-
- 
-        
-        
-        r_name = new JLabel("" );
-        r_name.setFont(new Font("Serif", Font.BOLD, 20));
-        r_address = new JLabel("" );
-        r_address.setFont(new Font("Serif", Font.BOLD, 20));
-        r_batch = new JLabel("" );
-        r_batch.setFont(new Font("Serif", Font.BOLD, 20));
-        r_roll = new JLabel("" );
-        r_roll.setFont(new Font("Serif", Font.BOLD, 20));
-        r_contact = new JLabel("" );
-        r_contact.setFont(new Font("Serif", Font.BOLD, 20));
-        r_photo = new JLabel("");
-
-        
-        
-        
-        l2 = new JLabel("Enter Name:" );
-       l2.setFont(new Font("Serif", Font.BOLD, 20));
-        l3 = new JLabel( "Enter TU Roll:" ); 
-        l3.setFont(new Font("Serif", Font.BOLD, 20));
-        tf1 = new JTextField();
-        tf1.setFont(new Font("Serif", Font.BOLD, 20));
-        tf2 = new JTextField();
-        tf2.setFont(new Font("Serif", Font.BOLD, 20));
-        btn1 = new JButton("Submit");
-        btn1.setFont(new Font("Serif", Font.BOLD, 20));
-        btn2 = new JButton("Clear");
-        btn2.setFont(new Font("Serif", Font.BOLD, 20));
-        l1.setBounds(100, 30, 400, 30);
-        
-        l2.setBounds(80, 70, 200, 30);
-
-        l3.setBounds(80, 110, 200, 30);
-       tf1.setBounds(300, 70, 200, 30);
-
-        tf2.setBounds(300, 110, 200, 30);
-        btn1.setBounds(80, 150, 100, 30);
-
-        btn2.setBounds(210, 150, 100, 30);
-
-       add(l1);  add(l2); add(tf1); add(l5); add(tf2); 
-        add(btn1);
-
-        add(btn2);
-        add(r_name);add(r_address);add(r_batch);add(r_roll);add(r_contact);add(r_photo);
-        r_name.setBounds(80,200,300,30);
-        r_name.setForeground(new Color(20  ,20,250));
-        r_address.setForeground(new Color(20  ,20,250));
-        r_batch.setForeground(new Color(20  ,20,250));
-        r_roll.setForeground(new Color(20  ,20,250));
-        r_contact.setForeground(new Color(20  ,20,250));
-        r_photo.setBounds(400,400,400,400);
-        r_address.setBounds(80,250,300,30);
-        r_batch.setBounds(80,300,300,30);
-        r_roll.setBounds(80,350,300,30);
-        r_contact.setBounds(80,400,300,30);
-  btn1.addActionListener(new ActionListener()
-    {
-    public void actionPerformed(ActionEvent e)
-     {
-             
-        if (e.getSource() == btn1)
-         {
-
-        	try{  
-    			Class.forName("com.mysql.jdbc.Driver");  
-    			Connection con=DriverManager.getConnection( "jdbc:mysql://localhost:3306/test","root","");    
-    			Statement stmt=con.createStatement();  
-    			String name= tf1.getText(); 
-    			String roll=tf2.getText();
-    			String sql = "select * from s1 where name='"+name+"' && roll ='"+roll+"'";
-                 	// String sql="insert into "+batch+" values('"+fname+"','"+lname+"','"+address+"','"+phone1+"','"+phone2+"')";
-         		ResultSet rs = 	stmt.executeQuery(sql);
-                        while(rs.next())
-                        {
-                            String n = rs.getString(1);
-                            String ad = rs.getString(2);
-                            String batc = rs.getString(3);
-                            String rol = rs.getString(4);
-                            String co = rs.getString(5);
-                            String photo = rs.getString(6);
-                            r_name.setText("Name: "+n);
-                            r_address.setText("Address:  "+ad);
-                            r_batch.setText("Batch:  "+batc);
-                            r_roll.setText("Roll:  "+rol);
-                            r_contact.setText("Contact:  "+co);
-                            System.out.println("Photo : " + photo);
-//                        ImageIcon ico = new ImageIcon(getClass().getClassLoader().getResource("img/"+photo));
-//                            r_photo.setText("Photo:"+ico);
-  ImageIcon ico = new ImageIcon(getClass().getClassLoader().getResource("img/"+photo));
-                            System.out.println();
-                    JLabel     l = new JLabel(ico);
-                        l.setBounds(100,100,400,200);                           
-                        }
-                        
-                        
-         		con.close();  	 
-                 
-    			}
-        	
-        	catch(Exception ee)
-        	{ 
-        		
-        	} 
-        	
-        	
-    	} 
-
-        
-       
-    		}
-    
-    });
-    
-  btn2.addActionListener(new ActionListener()
-		  {
-  public void actionPerformed(ActionEvent ae)
-  {
-
-     if (ae.getSource() == btn2)
-      {
-
-          tf1.setText("");
-  
-          tf2.setText("");
-
-
-     }
-
- } 
-		  });
-        }
-
-    
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-}
 
 
 

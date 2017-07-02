@@ -1,3 +1,4 @@
+/*Student Management System*/
 package views;
 
 import java.sql.*;

@@ -10,47 +10,24 @@ package models;
  * @author rowsun
  */
 public class Student {
-    String name, address, batch, contact , photo;
-    int roll;
+    String name, batch, address, roll, contact, photo,tu_roll;
 
-    public Student(){
-    }
-
-    public Student(String fname, String lname, String address, String batch, String contact, String photo, int roll) {
-        this.fname = fname;
-        this.lname = lname;
-        this.address = address;
+    public Student(String roll,String name, String batch, String address, String tu_roll, String contact, String photo) {
+        this.roll = roll;
+        this.name = name;
         this.batch = batch;
+        this.address = address;
+        this.tu_roll = tu_roll;
         this.contact = contact;
         this.photo = photo;
-        this.roll = roll;
     }
 
-    public String getFname() {
-        return fname;
+    public String getName() {
+        return name;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
-   
-
- 
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBatch() {
@@ -60,6 +37,30 @@ public class Student {
     public void setBatch(String batch) {
         this.batch = batch;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getRoll() {
+        return roll;
+    }
+
+    public void setRoll(String roll) {
+        this.roll = roll;
+    }
+    public String getTURoll() {
+        return tu_roll;
+    }
+
+    public void setTURoll(String roll) {
+        this.tu_roll = tu_roll;
+    }
+    
 
     public String getContact() {
         return contact;
@@ -76,15 +77,6 @@ public class Student {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-
-    public int getRoll() {
-        return roll;
-    }
-
-    public void setRoll(int roll) {
-        this.roll = roll;
-    }
-    
     
     
 }
